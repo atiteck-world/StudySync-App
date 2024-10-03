@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "988619202574",
+    "project_id": "studysync-5388c",
+    "storage_bucket": "studysync-5388c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988619202574:android:55deb506b0755592d51c5f",
+        "android_client_info": {
+          "package_name": "com.atsuite.studysyncapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpJ-KGC3zZo0VP1HO3OyDV54LK-QT4ujU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
