@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/colorBackground">
+
+    <EditText
+        android:id="@+id/etAssignmentName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Assignment Name"
+        android:padding="12dp"
+        android:background="@drawable/input_background"/>
+
+    <EditText
+        android:id="@+id/etDueDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Due Date (e.g., Oct 5)"
+        android:padding="12dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/input_background"/>
+
+    <Button
+        android:id="@+id/btnAddAssignment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Assignment"
+        style="@style/ButtonStyle"
+        android:layout_marginTop="24dp"/>
+</LinearLayout>

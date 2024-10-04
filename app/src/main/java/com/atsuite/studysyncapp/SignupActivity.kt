@@ -45,7 +45,7 @@ class SignUpActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     Toast.makeText(baseContext, "Sign-up successful", Toast.LENGTH_LONG).show()
                     // Sign-up successful, navigate to the dashboard
-                    val intent = Intent(this, LoginActivity::class.java)
+                    val intent = Intent(this, DashboardActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {

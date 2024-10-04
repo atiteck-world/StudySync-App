@@ -1,0 +1,77 @@
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="16dp"
+    android:elevation="4dp"
+    app:cardCornerRadius="8dp">
+
+    <!-- Outer LinearLayout to hold course details and icons horizontally -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <!-- Course Details Layout (Name, Credit Points, Dates) -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!-- Course Name -->
+            <TextView
+                android:id="@+id/tvCourseName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Course Name"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Credit Points -->
+            <TextView
+                android:id="@+id/tvCreditPoints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5 Credit Points"/>
+
+            <!-- Semester Dates -->
+            <TextView
+                android:id="@+id/tvSemesterDates"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="01/01/2024 - 30/06/2024"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+        <!-- Edit and Delete Icons (Aligned to the Right) -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- Edit Icon -->
+            <ImageView
+                android:id="@+id/ivEditCourse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/edit_24px"
+                android:contentDescription="Edit Course"
+                android:layout_marginEnd="16dp"
+                android:tint="@color/colorPrimary"/>
+
+            <!-- Delete Icon -->
+            <ImageView
+                android:id="@+id/ivDeleteCourse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/delete_24px"
+                android:contentDescription="Delete Course"
+                android:tint="@color/colorPrimary"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

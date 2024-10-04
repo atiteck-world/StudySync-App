@@ -13,6 +13,27 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
+            android:name=".CoursesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Dashboard1Activity"
+            android:exported="false" />
+        <activity
+            android:name=".EditAssignmentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddAssignmentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditScheduleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddScheduleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DashboardActivity"
+            android:exported="false" />
+        <activity
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity

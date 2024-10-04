@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_dashboard"
+        android:title="Dashboard"
+        android:icon="@drawable/home_24px"/>
+    <item
+        android:id="@+id/menu_courses"
+        android:title="Courses"
+        android:icon="@drawable/ic_dashboard"/>
+    <item
+        android:id="@+id/menu_schedules"
+        android:title="Schedules"
+        android:icon="@drawable/ic_dashboard"/>
+    <item
+        android:id="@+id/menu_assignments"
+        android:title="Assignments"
+        android:icon="@drawable/ic_dashboard"/>
+</menu>

@@ -51,9 +51,9 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     Toast.makeText(baseContext, "Login successful", Toast.LENGTH_SHORT).show()
                     // Login successful, navigate to the dashboard
-                    /*val intent = Intent(this, DashboardActivity::class.java)
+                    val intent = Intent(this, Dashboard1Activity::class.java)
                     startActivity(intent)
-                    finish()*/
+                    finish()
                 } else {
                     // If login fails, display a message to the user.
                     Toast.makeText(baseContext, "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
