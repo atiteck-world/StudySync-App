@@ -17,7 +17,7 @@ StudySync is a personal timetable scheduling app designed to help students manag
 ## Getting Started:
 1. **Clone the repository:**
    
-        git clone https://github.com/yourusername/StudySync.git
+        git clone https://github.com/atiteck-world/StudySync-App.git
 3. **Open the project in Android Studio.**
 4. **Set up Firebase:** Connect your Firebase project and add your Google-services.json file.
 5. **Run the app:** Build and deploy the app on an Android device or emulator.
