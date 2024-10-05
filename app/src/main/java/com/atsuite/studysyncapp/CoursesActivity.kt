@@ -3,6 +3,7 @@ package com.atsuite.studysyncapp
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.runtime.snapshotFlow
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -19,6 +20,10 @@ class CoursesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_courses)
+
+        val toolbar = findViewById<com.google.android.material.appbar.MaterialToolbar>(R.id.toolbar)
+        toolbar.setSubtitle("Courses")
+        setSupportActionBar(toolbar)
 
         // Initialize Firebase
         auth = FirebaseAuth.getInstance()
@@ -50,11 +55,26 @@ class CoursesActivity : AppCompatActivity() {
         val userId = auth.currentUser?.uid ?: return
 
         db.collection("users").document(userId).collection("courses")
+            .addSnapshotListener{ snapshots, error ->
+                if (error != null){
+                    return@addSnapshotListener
+                }
+                if (snapshots !=null && !snapshots.isEmpty){
+                    val courses = snapshots.documents.map { document ->
+                        document.toObject(Course::class.java)!!.apply {
+                            documentId = document.id
+                        }
+                    }
+                    courseAdapter.updateCourses(courses)
+                }
+            }
+
+        /*db.collection("users").document(userId).collection("courses")
             .get()
             .addOnSuccessListener { result ->
                 val courses = result.map { document ->
                     document.toObject(Course::class.java).apply {
-                        //documentId = document.id
+                        documentId = document.id
                     }
                 }
                 // Update the RecyclerView with the list of courses
@@ -62,11 +82,10 @@ class CoursesActivity : AppCompatActivity() {
             }
             .addOnFailureListener { e ->
                 // Handle errors here
-            }
+            }*/
     }
 
     private fun editCourse(course: Course) {
-        // Handle the logic to edit the course (you can show an edit dialog or another bottom sheet)
         val editCourseBottomSheet = EditCourseBottomSheetFragment.newInstance(course)
         editCourseBottomSheet.show(supportFragmentManager, editCourseBottomSheet.tag)
     }
@@ -81,7 +100,7 @@ class CoursesActivity : AppCompatActivity() {
             .setPositiveButton("Delete") { dialog, _ ->
                 // Delete the course from Firestore
                 db.collection("users").document(userId).collection("courses")
-                    .document(course.courseName)
+                    .document(course.documentId)
                     .delete()
                     .addOnSuccessListener {
                         loadCourses() // Reload courses after deletion

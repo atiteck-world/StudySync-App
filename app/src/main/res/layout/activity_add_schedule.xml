@@ -2,33 +2,39 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:background="@color/colorBackground">
+    android:padding="16dp">
 
+    <!-- Course Name Input -->
     <EditText
         android:id="@+id/etCourseName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Course Name"
-        android:padding="12dp"
-        android:background="@drawable/input_background"/>
+        android:layout_marginBottom="16dp"/>
 
+    <!-- Schedule Time Input -->
     <EditText
-        android:id="@+id/etCourseTime"
+        android:id="@+id/etScheduleTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Time (e.g., 9:00 AM)"
-        android:padding="12dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/input_background"/>
+        android:hint="Time (e.g., 10:00 AM - 12:00 PM)"
+        android:layout_marginBottom="16dp"/>
 
-    <Button
-        android:id="@+id/btnAddSchedule"
+    <!-- Schedule Date Input -->
+    <EditText
+        android:id="@+id/etScheduleDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Schedule"
-        style="@style/ButtonStyle"
-        android:layout_marginTop="24dp"/>
+        android:hint="Date (e.g., October 5, 2024)"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Add/Edit Button -->
+    <Button
+        android:id="@+id/btnAddEditSchedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Schedule"/>
+
 </LinearLayout>

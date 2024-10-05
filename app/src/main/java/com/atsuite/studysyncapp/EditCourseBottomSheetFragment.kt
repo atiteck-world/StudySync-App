@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.FirebaseAuth
@@ -26,7 +26,11 @@ class EditCourseBottomSheetFragment : BottomSheetDialogFragment() {
             args.putInt("creditPoints", course.creditPoints)
             args.putString("startDate", course.startDate)
             args.putString("endDate", course.endDate)
-            //args.putString("documentId", course.documentId)
+            args.putFloat("totalStudyHours", course.totalStudyHours)
+            args.putFloat("completedStudyHours", course.completedStudyHours)
+            args.putFloat("dailyStudyHours", course.dailyStudyHours)
+            args.putInt("studyDaysPerWeek", course.studyDaysPerWeek)
+            args.putString("documentId", course.documentId)
             fragment.arguments = args
             return fragment
         }
@@ -50,6 +54,10 @@ class EditCourseBottomSheetFragment : BottomSheetDialogFragment() {
         val etCreditPoints = view.findViewById<EditText>(R.id.etCreditPoints)
         val etStartDate = view.findViewById<EditText>(R.id.etStartDate)
         val etEndDate = view.findViewById<EditText>(R.id.etEndDate)
+        val etTotalStudyHours = view.findViewById<TextView>(R.id.tvTotalStudyHours)
+        val etCompletedStudyHours = view.findViewById<EditText>(R.id.etCompletedStudyHours)
+        val etDailyStudyHours = view.findViewById<EditText>(R.id.etDailyStudyHours)
+        val etStudyDaysPerWeek = view.findViewById<EditText>(R.id.etStudyDaysPerWeek)
         val btnEditCourse = view.findViewById<Button>(R.id.btnEditCourse)
 
         // Retrieve course details from arguments
@@ -59,12 +67,20 @@ class EditCourseBottomSheetFragment : BottomSheetDialogFragment() {
                 creditPoints = it.getInt("creditPoints", 0),
                 startDate = it.getString("startDate", ""),
                 endDate = it.getString("endDate", ""),
-                //documentId = it.getString("documentId", "")
+                totalStudyHours = it.getFloat("totalStudyHours", 0f),
+                completedStudyHours = it.getFloat("completedStudyHours", 0f),
+                dailyStudyHours = it.getFloat("dailyStudyHours", 0f),
+                studyDaysPerWeek = it.getInt("studyDaysPerWeek", 0),
+                documentId = it.getString("documentId", "")
             )
             etCourseName.setText(course.courseName)
             etCreditPoints.setText(course.creditPoints.toString())
             etStartDate.setText(course.startDate)
             etEndDate.setText(course.endDate)
+            etTotalStudyHours.setText(course.totalStudyHours.toString())
+            etCompletedStudyHours.setText(course.completedStudyHours.toString())
+            etDailyStudyHours.setText(course.dailyStudyHours.toString())
+            etStudyDaysPerWeek.setText(course.studyDaysPerWeek.toString())
         }
 
         // Handle the Edit Course button click
@@ -73,28 +89,45 @@ class EditCourseBottomSheetFragment : BottomSheetDialogFragment() {
             val updatedCreditPoints = etCreditPoints.text.toString().toIntOrNull() ?: 0
             val updatedStartDate = etStartDate.text.toString().trim()
             val updatedEndDate = etEndDate.text.toString().trim()
+            val updatedTotalStudyHours = etTotalStudyHours.text.toString().toFloatOrNull() ?: 0f
+            val updatedCompletedStudyHours = etCompletedStudyHours.text.toString().toFloatOrNull() ?: 0f
+            val updatedDailyStudyHours = etDailyStudyHours.text.toString().toFloatOrNull() ?: 0f
+            val updatedStudyDaysPerWeek = etStudyDaysPerWeek.text.toString().toIntOrNull() ?: 0
 
             if (updatedCourseName.isNotEmpty() && updatedStartDate.isNotEmpty() && updatedEndDate.isNotEmpty()) {
-                updateCourse(updatedCourseName, updatedCreditPoints, updatedStartDate, updatedEndDate)
+                updateCourse(updatedCourseName, updatedCreditPoints, updatedStartDate, updatedEndDate, updatedTotalStudyHours, updatedCompletedStudyHours, updatedDailyStudyHours, updatedStudyDaysPerWeek)
             } else {
                 Toast.makeText(context, "Please fill all fields correctly", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun updateCourse(courseName: String, creditPoints: Int, startDate: String, endDate: String) {
+    private fun updateCourse(
+        courseName: String,
+        creditPoints: Int,
+        startDate: String,
+        endDate: String,
+        totalStudyHours: Float,
+        completedStudyHours: Float,
+        dailyStudyHours: Float,
+        studyDaysPerWeek: Int
+    ) {
         val userId = auth.currentUser?.uid ?: return
 
         val updatedCourse = mapOf(
             "courseName" to courseName,
             "creditPoints" to creditPoints,
             "startDate" to startDate,
-            "endDate" to endDate
+            "endDate" to endDate,
+            "totalStudyHours" to totalStudyHours,
+            "completedStudyHours" to completedStudyHours,
+            "dailyStudyHours" to dailyStudyHours,
+            "studyDaysPerWeek" to studyDaysPerWeek
         )
 
         // Update course in Firestore
         db.collection("users").document(userId).collection("courses")
-            .document(course.courseName)
+            .document(course.documentId)
             .update(updatedCourse)
             .addOnSuccessListener {
                 Toast.makeText(context, "Course updated successfully", Toast.LENGTH_SHORT).show()

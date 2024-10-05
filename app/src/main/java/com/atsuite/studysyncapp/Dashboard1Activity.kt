@@ -53,13 +53,13 @@ class Dashboard1Activity : AppCompatActivity() {
                     startActivity(intent)
                     true
                 }
-                R.id.menu_assignments -> {
+                R.id.menu_schedules -> {
                     // Navigate to assignments activity
-                    /*val intent = Intent(this, AssignmentsActivity::class.java)
-                    startActivity(intent)*/
+                    val intent = Intent(this, ScheduleOverviewActivity::class.java)
+                    startActivity(intent)
                     true
                 }
-                R.id.menu_settings -> {
+                R.id.menu_assignments -> {
                     // Navigate to settings
                     /*val intent = Intent(this, SettingsActivity::class.java)
                     startActivity(intent)*/

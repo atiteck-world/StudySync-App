@@ -50,7 +50,49 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/input_background"/>
 
-    <!-- Add Course Button -->
+    <!-- Daily Study Hours Input -->
+    <EditText
+        android:id="@+id/etDailyStudyHours"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Daily Study Hours"
+        android:inputType="numberDecimal"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/input_background"/>
+
+    <!-- Study Days per Week Input -->
+    <EditText
+        android:id="@+id/etStudyDaysPerWeek"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Study Days per Week"
+        android:inputType="number"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/input_background"/>
+
+    <!-- Completed Study Hours Input -->
+    <EditText
+        android:id="@+id/etCompletedStudyHours"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Completed Study Hours"
+        android:inputType="numberDecimal"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/input_background"/>
+
+    <!-- Auto-calculated Total Study Hours -->
+    <TextView
+        android:id="@+id/tvTotalStudyHours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Study Hours: 0"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Update Course Button -->
     <Button
         android:id="@+id/btnEditCourse"
         android:layout_width="match_parent"
